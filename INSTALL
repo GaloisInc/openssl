@@ -18,6 +18,12 @@
     header files
   * a supported Unix operating system
 
+ Cheesecloth Commands
+ --------------------
+
+  $ ./Configure darwin64-x86_64-cc no-asm
+  $ make
+
  Quick Start
  -----------
 
