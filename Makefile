@@ -13,8 +13,8 @@ SHLIB_MAJOR=1
 SHLIB_MINOR=0.0
 SHLIB_EXT=.$(SHLIB_MAJOR).$(SHLIB_MINOR).dylib
 PLATFORM=darwin64-x86_64-cc
-OPTIONS= no-asm no-ec_nistp_64_gcc_128 no-gmp no-jpake no-krb5 no-md2 no-rc5 no-rfc3779 no-sctp no-shared no-store no-zlib no-zlib-dynamic static-engine
-CONFIGURE_ARGS=darwin64-x86_64-cc no-asm
+OPTIONS=-fembed-bitcode no-asm no-ec_nistp_64_gcc_128 no-gmp no-jpake no-krb5 no-md2 no-rc5 no-rfc3779 no-sctp no-shared no-store no-zlib no-zlib-dynamic static-engine
+CONFIGURE_ARGS=darwin64-x86_64-cc no-asm -fembed-bitcode
 SHLIB_TARGET=darwin-shared
 
 # HERE indicates where this Makefile lives.  This can be used to indicate
@@ -59,8 +59,8 @@ OPENSSLDIR=/usr/local/ssl
 # equal 4.
 # PKCS1_CHECK - pkcs1 tests.
 
-CC= cc
-CFLAG= -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -arch x86_64 -O3 -DL_ENDIAN -Wall
+CC= clang-9
+CFLAG= -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -fembed-bitcode -arch x86_64 -O3 -DL_ENDIAN -Wall -flto
 DEPFLAG= -DOPENSSL_NO_EC_NISTP_64_GCC_128 -DOPENSSL_NO_GMP -DOPENSSL_NO_JPAKE -DOPENSSL_NO_MD2 -DOPENSSL_NO_RC5 -DOPENSSL_NO_RFC3779 -DOPENSSL_NO_SCTP -DOPENSSL_NO_STORE
 PEX_LIBS= -Wl,-search_paths_first
 EX_LIBS= 

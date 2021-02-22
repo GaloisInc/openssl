@@ -21,7 +21,7 @@
  Cheesecloth Commands
  --------------------
 
-  $ ./Configure darwin64-x86_64-cc no-asm
+  $ ./Configure darwin64-x86_64-cc no-asm -fembed-bitcode -flto
   $ make
 
  Quick Start
