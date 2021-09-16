@@ -13,8 +13,8 @@ SHLIB_MAJOR=1
 SHLIB_MINOR=0.0
 SHLIB_EXT=.so.$(SHLIB_MAJOR).$(SHLIB_MINOR)
 PLATFORM=linux-x86_64
-OPTIONS=-fembed-bitcode -flto no-apps no-asm no-ec_nistp_64_gcc_128 no-gmp no-jpake no-krb5 no-md2 no-rc5 no-rfc3779 no-sctp no-shared no-store no-zlib no-zlib-dynamic static-engine
-CONFIGURE_ARGS=linux-x86_64 no-asm no-apps -fembed-bitcode -flto
+OPTIONS=-fembed-bitcode -flto -mprefer-vector-width=1 -nostdinc -isystem /usr/lib/llvm-9/lib/clang/9.0.1/include -isystem /home/james/sieve/picolibc/build/image/picolibc/x86_64-unknown-fromager/include no-asm no-dso no-ec_nistp_64_gcc_128 no-gmp no-hw no-jpake no-krb5 no-md2 no-rc5 no-rfc3779 no-sctp no-shared no-store no-threads no-zlib no-zlib-dynamic static-engine
+CONFIGURE_ARGS=linux-x86_64 no-asm no-dso no-threads no-hw no-shared no-krb5 no-zlib -fembed-bitcode -flto -mprefer-vector-width=1 -nostdinc -isystem /usr/lib/llvm-9/lib/clang/9.0.1/include -isystem /home/james/sieve/picolibc/build/image/picolibc/x86_64-unknown-fromager/include
 SHLIB_TARGET=linux-shared
 
 # HERE indicates where this Makefile lives.  This can be used to indicate
@@ -60,8 +60,8 @@ OPENSSLDIR=/usr/local/ssl
 # PKCS1_CHECK - pkcs1 tests.
 
 CC= clang-9
-CFLAG= -DOPENSSL_THREADS -D_REENTRANT -DDSO_DLFCN -DHAVE_DLFCN_H -fembed-bitcode -flto -m64 -DL_ENDIAN -DTERMIO -O3 -Wall
-DEPFLAG= -DOPENSSL_NO_APPS -DOPENSSL_NO_EC_NISTP_64_GCC_128 -DOPENSSL_NO_GMP -DOPENSSL_NO_JPAKE -DOPENSSL_NO_MD2 -DOPENSSL_NO_RC5 -DOPENSSL_NO_RFC3779 -DOPENSSL_NO_SCTP -DOPENSSL_NO_STORE
+CFLAG= -fembed-bitcode -flto -mprefer-vector-width=1 -nostdinc -isystem /usr/lib/llvm-9/lib/clang/9.0.1/include -isystem /home/james/sieve/picolibc/build/image/picolibc/x86_64-unknown-fromager/include -m64 -DL_ENDIAN -DTERMIO -O3 -Wall
+DEPFLAG= -DOPENSSL_NO_EC_NISTP_64_GCC_128 -DOPENSSL_NO_GMP -DOPENSSL_NO_JPAKE -DOPENSSL_NO_MD2 -DOPENSSL_NO_RC5 -DOPENSSL_NO_RFC3779 -DOPENSSL_NO_SCTP -DOPENSSL_NO_STORE
 PEX_LIBS= 
 EX_LIBS= -ldl
 EXE_EXT= 

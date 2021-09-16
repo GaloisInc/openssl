@@ -23,7 +23,7 @@
 
  Linux (apps fail to build for me, but they're not needed):
 
-  $ CC=clang-9 ./Configure linux-x86_64 no-asm -fembed-bitcode -flto
+  $ LLVM_SUFFIX=-9 PICOLIBC_HOME="/home/james/sieve/picolibc/build/image/picolibc/x86_64-unknown-fromager" CLANG_DIR="$(clang${LLVM_SUFFIX} -print-resource-dir)"; CC=clang${LLVM_SUFFIX}  ./Configure linux-x86_64 no-asm no-dso no-threads no-hw no-shared no-krb5 no-zlib -fembed-bitcode -flto -mprefer-vector-width=1 -nostdinc "-isystem $CLANG_DIR/include" "-isystem $PICOLIBC_HOME/include"
   $ make
 
  OS X:
