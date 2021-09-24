@@ -112,6 +112,7 @@
 #include <stdio.h>
 #include <errno.h>
 #define USE_SOCKETS
+#include "noni.h"
 #include "ssl_locl.h"
 #include <openssl/evp.h>
 #include <openssl/buffer.h>
@@ -911,6 +912,8 @@ int ssl3_write_pending(SSL *s, int type, const unsigned char *buf,
 		}
 	}
 
+int cc_ssl_should_taint_incoming = 0;
+
 /* Return up to 'len' payload bytes received in 'type' records.
  * 'type' is one of the following:
  *
@@ -1046,6 +1049,13 @@ start:
 		else
 			n = (unsigned int)len;
 
+		// Fromager: Check if we should taint incoming data.
+		if (cc_ssl_should_taint_incoming) {
+			// Taint the incoming buffer.
+			for (size_t i = 0; i < n; i++) {
+				noniSetLabelU8(&(rr->data[rr->off + i]), cc_current_label);
+			}
+		}
 		memcpy(buf,&(rr->data[rr->off]),n);
 		if (!peek)
 			{

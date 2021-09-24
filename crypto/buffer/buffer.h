@@ -113,6 +113,10 @@ void ERR_load_BUF_strings(void);
 
 /* Reason codes. */
 
+
+// Fromager: Global for checking whether we should taint buffers.
+extern int cc_ssl_should_taint_incoming;
+
 #ifdef  __cplusplus
 }
 #endif
