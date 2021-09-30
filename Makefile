@@ -60,7 +60,7 @@ OPENSSLDIR=/usr/local/ssl
 # PKCS1_CHECK - pkcs1 tests.
 
 CC= clang-9
-CFLAG= -fembed-bitcode -flto -mprefer-vector-width=1 -nostdinc -isystem /usr/lib/llvm-9/lib/clang/9.0.1/include -isystem /home/james/sieve/picolibc/build/image/picolibc/x86_64-unknown-fromager/include -m64 -DL_ENDIAN -DTERMIO -O3 -Wall
+CFLAG= -fembed-bitcode -flto -mprefer-vector-width=1 -nostdinc -isystem /usr/lib/llvm-9/lib/clang/9.0.1/include -isystem /home/james/sieve/picolibc/build/image/picolibc/x86_64-unknown-fromager/include -m64 -DL_ENDIAN -DTERMIO -Os -Wall
 DEPFLAG= -DOPENSSL_NO_EC_NISTP_64_GCC_128 -DOPENSSL_NO_GMP -DOPENSSL_NO_JPAKE -DOPENSSL_NO_MD2 -DOPENSSL_NO_RC5 -DOPENSSL_NO_RFC3779 -DOPENSSL_NO_SCTP -DOPENSSL_NO_STORE
 PEX_LIBS= 
 EX_LIBS= -ldl
