@@ -782,6 +782,11 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 	wr->length=(int)len;
 	wr->input=(unsigned char *)buf;
 
+	// Mark data being output as a sink for the taint analysis.
+	for (size_t i = 0; i < wr->length; i++) {
+		noniSinkU8(((uint8_t*) wr->input)+i, cc_current_label);
+	}
+
 	/* we now 'read' from wr->input, wr->length bytes into
 	 * wr->data */
 
