@@ -13,7 +13,7 @@ export CC=clang${LLVM_SUFFIX}
     no-ssl2 no-ssl3 \
     -fembed-bitcode -flto \
     -mprefer-vector-width=1 \
-    -nostdinc \
+    -DPURIFY -nostdinc \
     "-isystem $CLANG_DIR/include" \
     "-isystem $PICOLIBC_HOME/include"
 
