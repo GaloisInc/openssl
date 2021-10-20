@@ -17,7 +17,7 @@ export CC=clang${LLVM_SUFFIX}
     "-isystem $CLANG_DIR/include" \
     "-isystem $PICOLIBC_HOME/include" \
     -DPURIFY \
-    -DDEVRANDOM='' -DDEVRANDOM_EGD=0
+    -DDEVRANDOM_EGD=0
 
 
     #no-bf no-camellia no-cast no-des no-dsa no-idea no-md2 no-md4 no-mdc2 \
