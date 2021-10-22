@@ -256,10 +256,10 @@ void ssl3_cbc_copy_mac(unsigned char* out,
 		       unsigned md_size,unsigned orig_len)
 	{
 #if defined(CBC_MAC_ROTATE_IN_PLACE)
-	unsigned char rotated_mac_buf[64+EVP_MAX_MD_SIZE];
+	unsigned char rotated_mac_buf[64+EVP_MAX_MD_SIZE] = {0};
 	unsigned char *rotated_mac;
 #else
-	unsigned char rotated_mac[EVP_MAX_MD_SIZE];
+	unsigned char rotated_mac[EVP_MAX_MD_SIZE] = {0};
 #endif
 
 	/* mac_end is the index of |rec->data| just after the end of the MAC. */
