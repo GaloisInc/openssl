@@ -737,7 +737,7 @@ err:
 static int RSA_eay_mod_exp(BIGNUM *r0, const BIGNUM *I, RSA *rsa, BN_CTX *ctx)
 	{
 	BIGNUM *r1,*m1,*vrfy;
-	BIGNUM local_dmp1,local_dmq1,local_c,local_r1;
+	BIGNUM local_dmp1 = {0},local_dmq1 = {0},local_c = {0},local_r1 = {0};
 	BIGNUM *dmp1,*dmq1,*c,*pr1;
 	int ret=0;
 

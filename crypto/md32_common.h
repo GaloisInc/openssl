@@ -250,7 +250,7 @@
 #  endif
 # endif
 #endif
-#if defined(__i386) || defined(__i386__) || defined(__x86_64) || defined(__x86_64__)
+#if 0
 # ifndef B_ENDIAN
    /* See comment in DATA_ORDER_IS_BIG_ENDIAN section. */
 #  define HOST_c2l(c,l)	((l)=*((const unsigned int *)(c)), (c)+=4, l)

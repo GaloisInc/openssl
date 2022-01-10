@@ -112,6 +112,7 @@
 #include <stdio.h>
 #include <errno.h>
 #define USE_SOCKETS
+#include "noni.h"
 #include "ssl_locl.h"
 #include <openssl/evp.h>
 #include <openssl/buffer.h>
@@ -781,6 +782,11 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 	wr->length=(int)len;
 	wr->input=(unsigned char *)buf;
 
+	// Mark data being output as a sink for the taint analysis.
+	for (size_t i = 0; i < wr->length; i++) {
+		noniSinkU8(((uint8_t*) wr->input)+i, cc_current_label);
+	}
+
 	/* we now 'read' from wr->input, wr->length bytes into
 	 * wr->data */
 
@@ -910,6 +916,8 @@ int ssl3_write_pending(SSL *s, int type, const unsigned char *buf,
 		wb->left-=i;
 		}
 	}
+
+int cc_ssl_should_taint_incoming = 0;
 
 /* Return up to 'len' payload bytes received in 'type' records.
  * 'type' is one of the following:
@@ -1046,6 +1054,13 @@ start:
 		else
 			n = (unsigned int)len;
 
+		// Fromager: Check if we should taint incoming data.
+		if (cc_ssl_should_taint_incoming) {
+			// Taint the incoming buffer.
+			for (size_t i = 0; i < n; i++) {
+				noniSetLabelU8(&(rr->data[rr->off + i]), cc_current_label);
+			}
+		}
 		memcpy(buf,&(rr->data[rr->off]),n);
 		if (!peek)
 			{

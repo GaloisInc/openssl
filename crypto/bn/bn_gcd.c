@@ -508,7 +508,7 @@ static BIGNUM *BN_mod_inverse_no_branch(BIGNUM *in,
 	const BIGNUM *a, const BIGNUM *n, BN_CTX *ctx)
 	{
 	BIGNUM *A,*B,*X,*Y,*M,*D,*T,*R=NULL;
-	BIGNUM local_A, local_B;
+	BIGNUM local_A = {0}, local_B = {0};
 	BIGNUM *pA, *pB;
 	BIGNUM *ret=NULL;
 	int sign;

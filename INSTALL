@@ -18,6 +18,18 @@
     header files
   * a supported Unix operating system
 
+ Cheesecloth Commands
+ --------------------
+
+ Linux (apps fail to build for me, but they're not needed):
+
+  $ ./fromager-config.sh
+  $ make
+
+ OS X:
+  $ ./Configure darwin64-x86_64-cc no-asm -fembed-bitcode -flto
+  $ make
+
  Quick Start
  -----------
 
