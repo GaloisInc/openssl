@@ -22,10 +22,11 @@
 #include "prov/seeding.h"
 
 #ifdef __linux
-# include <sys/syscall.h>
+// CHEESECLOTH: these #includes are unused due to --with-rand-seed=none 
+//# include <sys/syscall.h>
 # ifdef DEVRANDOM_WAIT
-#  include <sys/shm.h>
-#  include <sys/utsname.h>
+//#  include <sys/shm.h>
+//#  include <sys/utsname.h>
 # endif
 #endif
 #if (defined(__FreeBSD__) || defined(__NetBSD__)) && !defined(OPENSSL_SYS_UEFI)

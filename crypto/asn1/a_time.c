@@ -597,6 +597,11 @@ int ASN1_TIME_compare(const ASN1_TIME *a, const ASN1_TIME *b)
 # define timezone _timezone
 #endif
 
+// CHEESECLOTH: picolibc defines only `_timezone`, not `timezone`
+#ifdef CHEESECLOTH
+# define timezone _timezone
+#endif
+
 #ifdef __FreeBSD__
 # define USE_TIMEGM
 #endif
