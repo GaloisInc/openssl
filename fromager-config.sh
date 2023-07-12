@@ -40,7 +40,8 @@ $openssl_dir/Configure $target \
     -DCHEESECLOTH \
     -DPURIFY \
     -DDEVRANDOM_EGD=0 \
-    -DOPENSSL_DEV_NO_ATOMICS=1
+    -DOPENSSL_DEV_NO_ATOMICS=1 \
+    -g
 
 
     #no-bf no-camellia no-cast no-des no-dsa no-idea no-md2 no-md4 no-mdc2 \
