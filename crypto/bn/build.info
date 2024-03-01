@@ -119,8 +119,8 @@ DEFINE[../../providers/libfips.a]=$BNDEF
 # Because some CPUID implementations use some BN assembler (!!!), we
 # must include assembler code into the legacy provider under the same
 # conditions as CPUID code is included.  See ../build.info
-SOURCE[../../providers/liblegacy.a]=$BNASM
-DEFINE[../../providers/liblegacy.a]=$BNDEF
+#SOURCE[../../providers/liblegacy.a]=$BNASM
+#DEFINE[../../providers/liblegacy.a]=$BNDEF
 # Implementations are now spread across several libraries, so the defines
 # need to be applied to all affected libraries and modules.
 DEFINE[../../providers/libcommon.a]=$BNDEF
